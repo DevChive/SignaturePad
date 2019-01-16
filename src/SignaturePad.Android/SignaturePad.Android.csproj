@@ -1,48 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F1A16CB9-A759-42C8-8F0B-3C9698A55336}</ProjectGuid>
-    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <RootNamespace>SignaturePad</RootNamespace>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <AssemblyName>SignaturePad.Android</AssemblyName>
+    <TargetFramework>monoandroid4.0.3</TargetFramework>
+    <RootNamespace>Xamarin.Controls</RootNamespace>
+    <AssemblyName>SignaturePad</AssemblyName>
+    <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <EnableDefaultCompileItems>False</EnableDefaultCompileItems>
+    <DocumentationFile Condition=" '$(Configuration)' == 'Release' ">bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <AndroidLinkMode>None</AndroidLinkMode>
+
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <PackageId>Xamarin.Controls.SignaturePad</PackageId>
+    <Title>SignaturePad for Xamarin and Windows</Title>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Summary>Makes capturing, saving, and displaying signatures extremely simple.</Summary>
+    <Description>Makes capturing, saving, and displaying signatures extremely simple.</Description>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageIconUrl>https://go.microsoft.com/fwlink/?linkid=874510</PackageIconUrl>
+    <RepositoryUrl>https://go.microsoft.com/fwlink/?linkid=874507</RepositoryUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=874507</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=874508</PackageLicenseUrl>
+    <PackageReleaseNotes>https://go.microsoft.com/fwlink/?linkid=874509</PackageReleaseNotes>
+    <PackageTags>xamarin,signature,handwriting,windows,ios,android,uwp</PackageTags>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="Mono.Android" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+
   <ItemGroup>
-    <Compile Include="SignaturePadView.cs" />
-    <Compile Include="ClearingImageView.cs" />
-    <Compile Include="SignatureCanvasView.cs" />
+    <Compile Include="*.cs" />
+    <Compile Include="..\SignaturePad.Shared\**\*.cs" Link="%(filename).shared%(Extension)" />
+    <Compile Include="..\SignaturePad.InkPresenter.Shared\**\*.cs" Link="%(filename).shared%(Extension)" />
+    <AndroidResource Include="Resources\**\*.axml" />
+    <AndroidResource Include="Resources\**\*.xml" />
   </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
 </Project>
